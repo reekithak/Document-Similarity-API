@@ -96,17 +96,18 @@ def predict(source_doc,target_docs,model_path):
     sim_scores = ds.calculate_similarity(source_doc, target_docs)
     tf_score = process_tfidf_similarity(source_doc,target_docs)
 
-    sim_score = (sim_scores[0]['score']+tf_score)/2
+    sim_score = 0
 
-    # if((sim_scores[0]['score']>=0.9) and (tf_score>=0.8)):
-    #     document_similar = True
-    #     sim_score = (sim_scores[0]['score']+tf_score)/2
-    # else:
-    #     document_similar = False
-    #     sim_score = (sim_scores[0]['score']+tf_score)/2
-    #print("Score 1: ",sim_score)
+    if((sim_scores[0]['score']>=0.4) and (tf_score>=0.4)):
+        document_similar = True
+        sim_score = (sim_scores[0]['score']+tf_score)/2
+    else:
+        document_similar = False
+        sim_score = (sim_scores[0]['score']+tf_score)/2
+    
     
 
+    
 
-
-    return ({"Score 1 ":sim_score})
+    return ({"Score ":sim_score,
+    "document_similar":document_similar})
