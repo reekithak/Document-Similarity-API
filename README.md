@@ -29,7 +29,7 @@ From the root folder of the repository, open a commandline terminal/powershell a
 ### Step 4:
 Once all the Above is Completed , Lets run our Application.
 
-simple type in `python app.py` into the console / terminal.
+simply type in `python app.py` into the console / terminal.
 The application will be hosted into the local server.
 
 There are Two Text Fields where you'll have to input / paste the texts.! 
