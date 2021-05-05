@@ -1,0 +1,4 @@
+gensim
+numpy
+sickit-learn
+pandas
