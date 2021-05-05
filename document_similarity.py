@@ -86,23 +86,24 @@ def process_tfidf_similarity(source_doc,target_docs):
             highest_score_index = i
 
     return highest_score
+ # The text that we get from the converted voice note.
 
 
-source_doc = "abcde" # The piece of text that we get from the generator
+def predict(source_doc,target_docs):
+    sim_scores = ds.calculate_similarity(source_doc, target_docs)
+    tf_score = process_tfidf_similarity(source_doc,target_docs)
 
-target_docs = "abbdc" # The text that we get from the converted voice note.
-
-sim_scores = ds.calculate_similarity(source_doc, target_docs)
-tf_score = process_tfidf_similarity(source_doc,target_docs)
-
-sim_score = 0
-if((sim_scores[0]['score']>=0.9) && (tf_score>=0.8)):
-    document_similar = True
-    sim_score = (sim_scores[0]['score']+tf_score)/2
-else:
-    document_similar = False
-    sim_score = (sim_scores[0]['score']+tf_score)/2
+    sim_score = 0
+    if((sim_scores[0]['score']>=0.9) && (tf_score>=0.8)):
+        document_similar = True
+        sim_score = (sim_scores[0]['score']+tf_score)/2
+    else:
+        document_similar = False
+        sim_score = (sim_scores[0]['score']+tf_score)/2
 
 
 
-return sim_score
+    return {
+        "sim_score":sim_score,
+        "document_sim":document_similar
+            }
