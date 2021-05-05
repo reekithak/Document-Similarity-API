@@ -6,7 +6,7 @@ from document_similarity import predict
 app = Flask(__name__)
 cors = CORS(app,resources={r"/upload/*": {"origins":"*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
-
+model_path = r'Models\GoogleNews-vectors-negative300.bin'
 
 @app.route('/')
 def my_form():
@@ -20,17 +20,19 @@ def home():
 @app.route('/upload',methods=['GET','POST'])
 @cross_origin()
 def upload():
-    def my_form_post():
-        if request.method == "POST":
-            source = request.form['source']
-            target = request.form['target']
+    
+    if request.method == "POST":
+        source = request.form['source']
+        target = request.form['target']
+        source = source.lower()
+        target = target.lower()
 
-            prediction = predict(source_doc,list(target_docs))
-            answer = "Score: ".format(prediction['sim_score'])
+        prediction = predict(source,[target],model_path)
+        answer = "Score: ".format(prediction)
 
-            return answer
+        return answer
 
-        return render_template('upload.html')
+    return render_template('upload.html')
 
 
 if __name__ == "__main__":

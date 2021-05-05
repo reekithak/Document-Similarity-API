@@ -87,8 +87,8 @@ def process_tfidf_similarity(source_doc,target_docs):
  # The text that we get from the converted voice note.
 
 
-def predict(source_doc,target_docs):
-    model_path = r'Models\GoogleNews-vectors-negative300.bin'
+def predict(source_doc,target_docs,model_path):
+    
     
     w2v_model = KeyedVectors.load_word2vec_format(model_path, binary=True)
     ds = DocSim(w2v_model)
@@ -96,17 +96,17 @@ def predict(source_doc,target_docs):
     sim_scores = ds.calculate_similarity(source_doc, target_docs)
     tf_score = process_tfidf_similarity(source_doc,target_docs)
 
-    sim_score = 0
-    if((sim_scores[0]['score']>=0.9) and (tf_score>=0.8)):
-        document_similar = True
-        sim_score = (sim_scores[0]['score']+tf_score)/2
-    else:
-        document_similar = False
-        sim_score = (sim_scores[0]['score']+tf_score)/2
+    sim_score = (sim_scores[0]['score']+tf_score)/2
+
+    # if((sim_scores[0]['score']>=0.9) and (tf_score>=0.8)):
+    #     document_similar = True
+    #     sim_score = (sim_scores[0]['score']+tf_score)/2
+    # else:
+    #     document_similar = False
+    #     sim_score = (sim_scores[0]['score']+tf_score)/2
+    print("Score 1: ",sim_score)
+    
 
 
 
-    return {
-        "sim_score":sim_score,
-        "document_sim":document_similar
-            }
+    return sim_score
