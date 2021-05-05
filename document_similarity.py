@@ -97,7 +97,7 @@ def predict(source_doc,target_docs):
     tf_score = process_tfidf_similarity(source_doc,target_docs)
 
     sim_score = 0
-    if((sim_scores[0]['score']>=0.9) && (tf_score>=0.8)):
+    if((sim_scores[0]['score']>=0.9) and (tf_score>=0.8)):
         document_similar = True
         sim_score = (sim_scores[0]['score']+tf_score)/2
     else:
