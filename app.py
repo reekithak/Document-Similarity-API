@@ -28,7 +28,7 @@ def upload():
         target = target.lower()
 
         prediction = predict(source,[target],model_path)
-        answer = "Score: ".format(prediction)
+        answer = "Score: {}".format(prediction)
 
         return answer
 

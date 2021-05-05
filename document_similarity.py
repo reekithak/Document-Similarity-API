@@ -104,9 +104,9 @@ def predict(source_doc,target_docs,model_path):
     # else:
     #     document_similar = False
     #     sim_score = (sim_scores[0]['score']+tf_score)/2
-    print("Score 1: ",sim_score)
+    #print("Score 1: ",sim_score)
     
 
 
 
-    return sim_score
+    return ({"Score 1 ":sim_score})
