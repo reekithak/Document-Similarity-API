@@ -7,12 +7,16 @@ app = Flask(__name__)
 def my_form():
     return render_template('upload.html')
 
-@app.route('/type', methods=['POST','GET'])
+@app.route('/', methods=['POST','GET'])
 def my_form_post():
     if request.method == "POST":
-        text = request.form['source']
-        processed_text = text.upper()
-        return processed_text
+        source = request.form['source']
+        target = request.form['target']
+        source_processed = source.upper()
+        target_processed = target.upper()
+        return {"source":source_processed,
+        "target":target_processed}
+        
     return render_template('upload.html')
 
 
