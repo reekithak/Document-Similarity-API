@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-model_path = r'D:\working repos\English-Proficiency-Tester\Modules\AI-Modules\1.Doc-Text-Sim\5-4-21\data\GoogleNews-vectors-negative300.bin'
+
 # NULL
 class DocSim:
     def __init__(self, w2v_model, stopwords=None):
@@ -65,9 +65,7 @@ class DocSim:
 
 
 
-w2v_model = KeyedVectors.load_word2vec_format(model_path, binary=True)
 
-ds = DocSim(w2v_model)
 
 def process_tfidf_similarity(source_doc,target_docs):
     vectorizer = TfidfVectorizer()
@@ -90,6 +88,11 @@ def process_tfidf_similarity(source_doc,target_docs):
 
 
 def predict(source_doc,target_docs):
+    model_path = r'Models\GoogleNews-vectors-negative300.bin'
+    
+    w2v_model = KeyedVectors.load_word2vec_format(model_path, binary=True)
+    ds = DocSim(w2v_model)
+
     sim_scores = ds.calculate_similarity(source_doc, target_docs)
     tf_score = process_tfidf_similarity(source_doc,target_docs)
 

@@ -2,3 +2,4 @@ gensim
 numpy
 sickit-learn
 pandas
+flask-cors
