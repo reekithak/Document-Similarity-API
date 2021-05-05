@@ -44,3 +44,4 @@ The score is in JSON format & will be disaplayed onto the Screen.
 NOTE:
 CORS Support is added.
 OpenSource Code-Snippets are part of this project.
+Used Word2Vec:- GoogleNews-vectors-negative300
